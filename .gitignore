@@ -5,8 +5,7 @@
 /.pnp
 .pnp.js
 /mongodb
-kk
-www
+
 # testing
 /coverage
 

@@ -30,6 +30,7 @@
     ]
   },
   "devDependencies": {
+    "antd-mobile": "^2.2.13",
     "express": "^4.17.1"
   }
 }
