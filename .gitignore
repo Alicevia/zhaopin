@@ -6,6 +6,7 @@
 .pnp.js
 /mongodb
 as
+www
 # testing
 /coverage
 
