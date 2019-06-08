@@ -1,15 +1,31 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+
+import {  WingBlank } from 'antd-mobile'
+import action from '../../store/action';
+import UserCard from '../UserCard/UserCard'
+
 class Genius extends Component {
- constructor(props,context){
-  super(props,context)
- }
+
+
+ componentDidMount(){
+  let {getBossAndGeniusInfoList} = this.props;
+  getBossAndGeniusInfoList({type:'boss'});
+}
+
  render() {
   return (
       <div>
-        boss
+         <WingBlank>
+         {this.props.bossAndGeniusListInfo.map((item,index)=>{
+             return <UserCard key={index} item={item}></UserCard>
+         })}
+      </WingBlank>
       </div>
     )
  }
 }
-export default connect()(Genius);
+export default connect(state=>({
+
+  ...state.chatuser
+}),action.updateInfo)(Genius);

@@ -23,3 +23,7 @@ export function sendQueryBossAndGenius(data){
         }
     })
 }
+
+export function sendMsgList(){
+    return axios.get('/user/getmsglist')
+}

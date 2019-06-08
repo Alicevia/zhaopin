@@ -5,8 +5,10 @@ let Router = express.Router()
 
 let model = require('./model')
 let User = model.getModel('user')
+let Chat = model.getModel('chat')
 let _filter = {'pwd':0,'__v':0}
 
+// Chat.remove({},(e,d)=>{})
 
 Router.get('/list',(req,res)=>{
     let {type} = req.query  //Get参数用query获取
@@ -20,6 +22,29 @@ Router.get('/list',(req,res)=>{
         }
     })
 })
+
+Router.get('/getmsglist',(req,res)=>{
+    let user = req.cookies.userid;
+    User.find({},(e,userdoc)=>{
+        let users = {}
+        userdoc.forEach(item=>{
+            users[item._id] = {name:item.user,avatar:item.avatar}
+        })
+        Chat.find({'$or':[{from:user},{to:user}]},(e,d)=>{
+            if (!e) {
+                return res.json({code:0,data:d,users})
+            }else{
+                return res.json({code:1,msg:'获取对话信息失败'})
+            }
+        })
+
+    })
+
+
+    
+})
+
+
 
 Router.post('/update',(req,res)=>{
     let userid = req.cookies.userid

@@ -9,6 +9,8 @@ import Authroute from './Component/Authroute/Authroute'
 import BossInfo from './Container/BossInfo/BossInfo';
 import GeniusInfo from './Container/GeniusInfo/GeniusInfo';
 import Dashboard from './Component/Dashboard/Dashboard'
+import Chat from './Component/Chat/Chat'
+
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
               <Route path='/register' component={Register}></Route>
               <Route path='/bossinfo'  component={BossInfo}></Route>
               <Route path='/geniusinfo'  component={GeniusInfo}></Route>
+              <Route path='/chat/:user' component={Chat}></Route>
               <Route component={Dashboard}></Route>
             </Switch>
           </div>

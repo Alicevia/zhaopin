@@ -9,21 +9,17 @@ import Boss from '../Boss/Boss'
 import Msg from '../Msg/Msg'
 import User from '../User/User'
 import Genius from '../Genius/Genius'
-
 class Dashboard extends Component {
  constructor(props,context){
   super(props,context)
  }
 
  componentDidMount(){
-     let user = this.props.user;
-     if (!user) {
-        return null
+    if (!this.props.chatmsg.length) {
+        this.props.getMsgList()
+        this.props.recvMsg()
     }
-   
 
-  
-     
  }
  
  headerTitle(){
@@ -33,6 +29,7 @@ class Dashboard extends Component {
  }
  categoryData(){
     let {category,type} = this.props
+    console.log(this.props)
     category = category.filter(item=>item.hide!==type)
     return category
  }
@@ -56,4 +53,7 @@ class Dashboard extends Component {
     )
  }
 }
-export default connect(state=>state.user)(Dashboard);
+export default connect(state=>({
+    ...state.user,
+    ...state.chatuser
+}),action.message)(Dashboard);

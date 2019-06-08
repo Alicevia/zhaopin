@@ -18,7 +18,6 @@ let register = {
 
         return async dispatch=>{
             let result = await sendRegister({user,type,pwd})
-            console.log(result)
             if (result.status===200 && result.data.code===0) {
                 dispatch(authSuccess(result.data.data))
             }else{

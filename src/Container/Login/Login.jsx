@@ -37,7 +37,7 @@ class Login extends Component {
    let {redirectTo} = this.props;
   return (
       <div>
-        {redirectTo?<Redirect to={redirectTo}></Redirect>:null}
+        {redirectTo&&redirectTo!=='/login'?<Redirect to={redirectTo}></Redirect>:null}
         <Logo></Logo>
 
         {this.props.msg?<p className='error-msg'>{this.props.msg}</p>:null}

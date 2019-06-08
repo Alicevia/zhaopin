@@ -1,6 +1,8 @@
 
 import {sendUpdateInfo,sendQueryBossAndGenius} from '../../api/allRequest'
 import {authSuccess,errorMsg,getBossAndGeniusListSuccess} from '../../utils/utils'
+import * as TYPES from '../action-types'
+
 let updateInfo = {
     doUpdateInfo(payload={}){
         return async dispatch=>{
@@ -15,8 +17,6 @@ let updateInfo = {
     getBossAndGeniusInfoList(data){
         return async dispatch=>{
             let result =await sendQueryBossAndGenius(data)
-            console.log(result)
-
             if (result.status===200 && result.data.code===0) {
                 dispatch(getBossAndGeniusListSuccess(result.data.data))
             }else{
@@ -24,7 +24,13 @@ let updateInfo = {
             }
             
         }
+    },
+    logoutSubmit(){
+        return {
+            type:TYPES.LOGOUT
+        }
     }
+
 
 
 

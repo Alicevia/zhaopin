@@ -11,12 +11,11 @@ let login = {
     // },
     doLogin({user,pwd}={}){
          if (!user||!pwd) {
-             return login.errorMsg('用户名或密码为空')
+             return errorMsg('用户名或密码为空')
          }
 
         return async dispatch=>{
             let result = await sendLogin({user,pwd})
-            console.log(result)
             if (result.status===200 && result.data.code===0) {
                 dispatch(authSuccess(result.data.data))
             }else{
