@@ -71,6 +71,7 @@ Router.post('/update',(req,res)=>{
         let data = Object.assign({},{
             user:d.user,
             type:d.type,
+            
         },body)
         console.log(data)
         return res.json({code:0,data })

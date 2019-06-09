@@ -16,6 +16,10 @@ class Chat extends Component {
   }
   this.handleSubmit = this.handleSubmit.bind(this)
  }
+ componentWillMount(){
+    this.props.getMsgList()
+
+ }
  componentDidMount(){
     if (!this.props.chatuser.chatmsg.length) {
         this.props.recvMsg()
@@ -38,10 +42,12 @@ class Chat extends Component {
     let from = this.props.user._id;
     let to =  this.props.match.params.user
     let msg = this.state.text
-    this.props.pushMsg({from,to,msg})
+
      this.setState({
          text:'',
          showEmoji:false
+     },()=>{
+        this.props.pushMsg({from,to,msg})
      })
  }
 
@@ -57,6 +63,7 @@ class Chat extends Component {
     }
     let chatId = getChatId(userid,user)
     chatmsgs = chatmsgs.filter(item=>item.chatid===chatId)
+
   return (
       <div id='chat-page'>
           <NavBar mode='dark'  className='fixd-navbar'
@@ -65,7 +72,7 @@ class Chat extends Component {
           >{users[userid].name}</NavBar>
             {
                 chatmsgs.map((item,index)=>{
-                    let avatar= require(`../img/${users[item.from].avatar}.png`)
+                    let avatar= require(`../img/${users[item.from].avatar}.png`)||''
                     return item.from === userid?(
                         <List key={index}> 
                             <List.Item thumb={avatar}>

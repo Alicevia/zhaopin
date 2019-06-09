@@ -35,7 +35,6 @@ export function getBossAndGeniusListSuccess(data){
 export function msgList(msg,users,userId){
     return {type:TYPES.MSG_LIST,data:{msg,users,userId}}
 }
-
 export function msgRecv(data,userid){
     return {type:TYPES.MSG_RECV,data,userid}
 }
