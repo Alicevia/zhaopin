@@ -36,6 +36,9 @@ export function msgList(msg,users,userId){
     return {type:TYPES.MSG_LIST,data:{msg,users,userId}}
 }
 
-export function msgRecv(data){
-    return {type:TYPES.MSG_RECV,data}
+export function msgRecv(data,userid){
+    return {type:TYPES.MSG_RECV,data,userid}
+}
+export function msgRead({from,userid,num}){
+    return {type:TYPES.MSG_READ,data:{from,userid,num}}
 }

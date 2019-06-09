@@ -29,7 +29,6 @@ class Dashboard extends Component {
  }
  categoryData(){
     let {category,type} = this.props
-    console.log(this.props)
     category = category.filter(item=>item.hide!==type)
     return category
  }

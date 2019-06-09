@@ -27,3 +27,7 @@ export function sendQueryBossAndGenius(data){
 export function sendMsgList(){
     return axios.get('/user/getmsglist')
 }
+
+export function sendReadMsg(data){
+    return axios.post('/user/readmsg',data)
+}

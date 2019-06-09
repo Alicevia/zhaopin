@@ -17,9 +17,8 @@ class NavLink extends Component {
             barTintColor="white"
             >
               {this.props.data.map((item,index)=>{
-                console.log(item)
                   return (<TabBar.Item 
-                    badge={item.path==='/msg'?parseFloat(this.props.unread):''}
+                    badge={item.path==='/msg'?parseFloat(this.props.unread):0}
                     key={index} 
                     icon={{uri:require(`./img/${item.icon}.png`)}} 
                     title={item.text} selected={pathname===item.path}

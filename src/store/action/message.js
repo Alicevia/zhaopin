@@ -1,5 +1,5 @@
-import {sendMsgList} from '../../api/allRequest'
-import {msgList,errorMsg,msgRecv} from '../../utils/utils'
+import {sendMsgList,sendReadMsg} from '../../api/allRequest'
+import {msgList,errorMsg,msgRecv,msgRead} from '../../utils/utils'
 import io from 'socket.io-client'
 let socket = io('ws://localhost:3001')
 
@@ -21,10 +21,22 @@ let message = {
         }
     },
     recvMsg(){
-        return dispatch=>{
+        return (dispatch,getState)=>{
              socket.on('recvmsg',(data)=>{      
-                dispatch(msgRecv(data))
+                let userid = getState().user._id
+                dispatch(msgRecv(data,userid))
             })
+        }
+    },
+    readMsg(from){
+        return async (dispatch,getState)=>{
+            let result =await sendReadMsg({from})
+            let userid = getState().user._id
+            console.log(result)
+            if (result.status===200 && result.data.code===0) {
+                dispatch(msgRead({userid,from,num:result.data.num}))
+            }
+           
         }
     }
 
